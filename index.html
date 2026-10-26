@@ -1,148 +1,146 @@
-<!DOCTYPE html>
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>azplaystore — POS Terminal & AppStore</title>
-    <!-- Исправленный Tailwind CSS -->
-    <script src="https://jsdelivr.net"></script>
-    <!-- Исправленный FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>azplaystore Milli Stora Panel</title>
     <style>
-        @import url('https://googleapis.com');
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #090d16; 
-            color: #f8fafc;
-            -webkit-tap-highlight-color: transparent;
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --success: #22c55e;
+            --border: #334155;
         }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        .grid-tablet { grid-template-columns: 280px 1fr; }
-        .active-tab { background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%); color: white; border-color: transparent; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; }
+        .header { margin-bottom: 20px; }
+        .header h1 { font-size: 24px; font-weight: bold; margin-bottom: 4px; }
+        .header p { color: var(--text-muted); font-size: 14px; }
+        .agent-status { margin-top: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+        .badge-running { background: rgba(34, 197, 94, 0.2); color: var(--success); padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+        
+        /* Навигация */
+        .nav-tabs { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .tab-btn { background: #1e293b; border: 1px solid var(--border); color: var(--text-muted); padding: 8px 16px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-size: 14px; }
+        .tab-btn.active { background: var(--primary); color: #000; font-weight: bold; border-color: var(--primary); }
+        
+        /* Секции */
+        .section { display: none; }
+        .section.active { display: block; }
+        
+        /* Карточки */
+        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .card h2 { font-size: 18px; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .stat-val { font-size: 20px; font-weight: bold; color: var(--primary); margin-top: 5px; }
+        
+        /* Кнопки */
+        .btn-action { width: 100%; background: #0284c7; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 14px; }
+        .btn-action:active { background: #0369a1; }
+        
+        .list-item { background: rgba(255,255,255,0.03); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 14px; border-left: 3px solid var(--primary); }
     </style>
 </head>
-<body class="h-screen overflow-hidden flex flex-col select-none">
+<body>
 
-    <!-- Звуковое сопровождение -->
+    <div class="header">
+        <h1>azplaystore Milli Stora Panel</h1>
+        <p>Tablet POS Terminal v2.0</p>
+        <div class="agent-status">
+            AI Marketing Agent: <span class="badge-running">RUNNING 24/7</span>
+        </div>
+    </div>
+
+    <!-- Вкладки навигации -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchSection('vitrin')">Ana Səhifə (Vitrin)</button>
+        <button class="tab-btn" onclick="switchSection('ai-marketing')">ИИ Продвижение 24/7</button>
+        <button class="tab-btn" onclick="switchSection('cargo')">BakuGo Karqo</button>
+        <button class="tab-btn" onclick="switchSection('usta')">BakuGo Usta</button>
+    </div>
+
+    <!-- 1. Секция: Витрина -->
+    <div id="vitrin" class="section active">
+        <div class="stats-grid">
+            <div class="card">
+                <div>Ümumi Yükləmələr</div>
+                <div class="stat-val">1,420 DL</div>
+            </div>
+            <div class="card">
+                <div>SAYT TRAFİKİ</div>
+                <div class="stat-val">12 aktiv istifadəçi</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Milli Proqram Vitrini</h2>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 10px;">İA tərəfindən idarə olunan rəsmi və təhlükəsiz APK bazası.</p>
+            <div class="stat-val" style="font-size: 16px;">5 / 5 Yüklənib</div>
+        </div>
+    </div>
+
+    <!-- 2. Секция: ИИ Маркетинг -->
+    <div id="ai-marketing" class="section">
+        <div class="card">
+            <h2>Автономное ИИ-Продвижение</h2>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Агент генерирует трафик, привлекает клиентов и делает публикации автоматически.</p>
+            <div class="list-item">🟢 SEO Генерация текста — Активна</div>
+            <div class="list-item">🟢 TG Крауд-Постинг — Активна</div>
+            <button class="btn-action" onclick="forceAiPost()">Форсировать ИИ-Пост</button>
+        </div>
+    </div>
+
+    <!-- 3. Секция: Карго -->
+    <div id="cargo" class="section">
+        <div class="card">
+            <h2>BakuGo Karqo Modulu</h2>
+            <p style="color: var(--text-muted); font-size: 14px;">Управление интеграцией службы доставки и отслеживание посылок.</p>
+            <button class="btn-action" onclick="alert('Karqo modulu yüklənir...')">Логистическая панель</button>
+        </div>
+    </div>
+
+    <!-- 4. Секция: Мастера -->
+    <div id="usta" class="section">
+        <div class="card">
+            <h2>BakuGo Usta Modulu</h2>
+            <p style="color: var(--text-muted); font-size: 14px;">Панель распределения заказов для сервиса поиска мастеров.</p>
+            <button class="btn-action" onclick="alert('Usta modulu yüklənir...')">База мастеров</button>
+        </div>
+    </div>
+
+    <!-- Исправленный JavaScript -->
     <script>
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        function playSound(type) {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain); gain.connect(audioCtx.destination);
+        // Функция переключения вкладок (Исправленная)
+        function switchSection(sectionId) {
+            // Скрываем все секции
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.classList.remove('active'));
 
-            if (type === 'click') { 
-                osc.type = 'sine'; osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.05);
-            } else if (type === 'success') { 
-                osc.type = 'triangle'; osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); 
-                osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);    
-                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.4);
-            } else if (type === 'error') { 
-                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(120, audioCtx.currentTime);
-                osc.frequency.linearRampToValueAtTime(60, audioCtx.currentTime + 0.3);
-                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+            // Деактивируем все кнопки
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Активируем нужную секцию
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+
+            // Подсвечиваем нажатую кнопку
+            const clickedButton = event.currentTarget;
+            if (clickedButton) {
+                clickedButton.classList.add('active');
             }
         }
+
+        // Функция форсирования ИИ поста
+        function forceAiPost() {
+            alert("ИИ-Пост успешно форсирован! Робот генерирует новую публикацию...");
+            // Здесь в будущем вы можете прописать ваш fetch() запрос к бэкенду
+        }
     </script>
-
-    <!-- Шапка ТЕРМИНАЛА -->
-    <header class="bg-slate-900 border-b border-slate-800 px-6 py-3 flex justify-between items-center shrink-0">
-        <div class="flex items-center gap-3">
-            <div class="bg-blue-600 text-white font-black px-3 py-1.5 rounded-xl text-lg shadow-lg shadow-blue-500/20">AZ</div>
-            <div>
-                <h1 class="font-extrabold text-base tracking-tight">azplaystore <span class="text-xs text-blue-400 font-normal">Milli Stora Panel</span></h1>
-                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Tablet POS Terminal v2.0</p>
-            </div>
-        </div>
-        
-        <div class="flex items-center gap-4">
-            <div class="bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs font-semibold flex items-center gap-2">
-                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
-                <span class="text-slate-400">AI Marketing Agent:</span> <span class="text-emerald-400" id="agent-status">RUNNING 24/7</span>
-            </div>
-            <button onclick="playSound('click'); toggleLanguage()" id="langBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold transition">RU</button>
-        </div>
-    </header>
-
-    <!-- Двухпанельный Интерфейс -->
-    <div class="flex-grow grid grid-tablet overflow-hidden bg-slate-950">
-        
-        <!-- ЛЕВАЯ ПАНЕЛЬ -->
-        <aside class="bg-slate-900/40 border-r border-slate-800/80 p-4 flex flex-col justify-between overflow-y-auto">
-            <div class="space-y-2" id="menu-links">
-                <button onclick="playSound('click'); switchSection('main')" id="btn-main" class="active-tab w-full text-left px-4 py-3 rounded-xl border border-slate-800 text-sm font-semibold flex items-center gap-3 transition">
-                    <i class="fa-solid fa-layer-group"></i> <span data-i18n="m_home">Ana Səhifə (Vitrin)</span>
-                </button>
-                <button onclick="playSound('click'); switchSection('marketing')" id="btn-marketing" class="w-full text-slate-400 hover:text-white hover:bg-slate-800/50 text-left px-4 py-3 rounded-xl border border-transparent text-sm font-semibold flex items-center gap-3 transition">
-                    <i class="fa-solid fa-robot text-purple-400"></i> <span data-i18n="m_marketing">ИИ Продвижение 24/7</span>
-                </button>
-                <button onclick="playSound('click'); switchSection('cargo')" id="btn-cargo" class="w-full text-slate-400 hover:text-white hover:bg-slate-800/50 text-left px-4 py-3 rounded-xl border border-transparent text-sm font-semibold flex items-center gap-3 transition">
-                    <i class="fa-solid fa-truck-fast text-blue-400"></i> <span>BakuGo Karqo</span>
-                </button>
-                <button onclick="playSound('click'); switchSection('usta')" id="btn-usta" class="w-full text-slate-400 hover:text-white hover:bg-slate-800/50 text-left px-4 py-3 rounded-xl border border-transparent text-sm font-semibold flex items-center gap-3 transition">
-                    <i class="fa-solid fa-screwdriver-wrench text-emerald-400"></i> <span>BakuGo Usta</span>
-                </button>
-            </div>
-
-            <!-- ИНФО О БАЛАНСЕ И СТАТИСТИКЕ -->
-            <div class="mt-auto pt-4 border-t border-slate-800/60">
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                    <span class="text-[10px] text-slate-500 uppercase font-bold tracking-wider" data-i18n="m_rev">Ümumi Yükləmələr</span>
-                    <div class="text-xl font-black text-emerald-400 mt-1 mono" id="total-downloads">1,420 DL</div>
-                    <div class="text-[11px] text-slate-400 mt-1">SAYT TRAFİKİ: <span class="text-blue-400 font-bold" id="live-traffic">12 aktiv istifadəçi</span></div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- ПРАВАЯ ПАНЕЛЬ -->
-        <main class="overflow-y-auto p-6 relative bg-[#0d1321]">
-            
-            <!-- SECTION: ГЛАВНАЯ ВИТРИНА МАГАЗИНА (5 ПРИЛОЖЕНИЙ) -->
-            <div id="sec-main" class="section-block">
-                <div class="mb-6 flex justify-between items-center">
-                    <div>
-                        <h2 class="text-2xl font-black text-white" data-i18n="hero_title">Milli Proqram Vitrini</h2>
-                        <p class="text-xs text-slate-400 mt-1" data-i18n="hero_subtitle">İA tərəfindən idarə olunan rəsmi və təhlükəsiz APK bazası.</p>
-                    </div>
-                    <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/20">5 / 5 Yüklənib</span>
-                </div>
-                
-                <!-- Сетка 5ти Приложений -->
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="apps-container">
-                    <!-- Карточки генерируются скриптом ниже автоматически -->
-                </div>
-            </div>
-
-            <!-- SECTION: ИИ-МАРКЕТИНГ (ПРОДВИЖЕНИЕ 24/7) -->
-            <div id="sec-marketing" class="section-block hidden">
-                <div class="mb-6">
-                    <h2 class="text-2xl font-black text-purple-400"><i class="fa-solid fa-brain mr-2"></i> 24/7 Автономное ИИ Продвижение</h2>
-                    <p class="text-xs text-slate-400 mt-1">ИИ-агент круглосуточно привлекает клиентов, генерирует трафик и пишет посты.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Левая колонка контроля -->
-                    <div class="bg-slate-900 p-5 rounded-2xl border border-slate-800 space-y-4 col-span-1">
-                        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300">Статус Продвижения</h3>
-                        <div class="p-3 bg-slate-950 rounded-xl border border-purple-500/30 flex items-center justify-between">
-                            <span class="text-xs text-slate-400">SEO Генерация:</span>
-                            <span class="text-xs text-emerald-400 font-bold"><i class="fa-solid fa-check-double"></i> Активно</span>
-                        </div>
-                        <div class="p-3 bg-slate-950 rounded-xl border border-blue-500/30 flex items-center justify-between">
-                            <span class="text-xs text-slate-400">TG Крауд-Постинг:</span>
-                            <span class="text-xs text-emerald-400 font-bold"><i class="fa-solid fa-check-double"></i> Активно</span>
-                        </div>
-                        <button onclick="simulateAiAction()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl text-xs transition uppercase tracking-wider">
-                            <i class="fa-solid fa-bolt mr-1"></i> Форсировать ИИ-Пост
-                        </button>
-                    </div>
+</body>
+</html>
 
                     <!-- Правая колонка логов ИИ -
