@@ -1,0 +1,38 @@
+!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>azplaystore</title>
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        body { background-color: #090d16; color: #f8fafc; font-family: sans-serif; }
+        .active-tab { background: #0ea5e9; color: white; }
+        .page-content { display: none; }
+        .page-content.active { display: block; }
+    </style>
+</head>
+<body class="h-screen flex flex-col p-4">
+    <header class="flex justify-between items-center mb-6 bg-[#111827] p-4 rounded-lg">
+        <h1 class="text-xl font-bold text-sky-500">azplaystore</h1>
+        <nav class="flex gap-2">
+            <button onclick="tab('home')" id="b-home" class="btn px-3 py-1 rounded active-tab">Ana Səhifə</button>
+            <button onclick="tab('apps')" id="b-apps" class="btn px-3 py-1 rounded text-gray-400">Proqramlar</button>
+            <button onclick="tab('games')" id="b-games" class="btn px-3 py-1 rounded text-gray-400">Oyunlar</button>
+        </nav>
+    </header>
+    <main class="flex-1 bg-[#1f2937] p-4 rounded-lg">
+        <div id="p-home" class="page-content active"><h2>Ana Səhifə</h2><p class="text-gray-400 mt-2">Mağazaya xoş gəlmisiniz!</p></div>
+        <div id="p-apps" class="page-content"><h2>Proqramlar</h2><p class="text-gray-400 mt-2">Burada proqramlar olacaq.</p></div>
+        <div id="p-games" class="page-content"><h2>Oyunlar</h2><p class="text-gray-400 mt-2">Burada oyunlar olacaq.</p></div>
+    </main>
+    <script>
+        function tab(id) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active-tab'));
+            document.getElementById('p-' + id).classList.add('active');
+            document.getElementById('b-' + id).classList.add('active-tab');
+        }
+    </script>
+</body>
+</html>
