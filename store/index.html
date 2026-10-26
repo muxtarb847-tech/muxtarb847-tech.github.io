@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milli Proqram Vitrini</title>
+    <!-- Подключаем иконки Google -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Подключаем файл стилей, который мы создали -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Milli Proqram Vitrini</h1>
+            <p>Rəsmi və təhlükəsiz APK tətbiqlər bazası</p>
+        </header>
+
+        <!-- Сюда JavaScript будет подгружать карточки приложений -->
+        <div class="apps-grid" id="appsGrid"></div>
+    </div>
+
+    <!-- Модальное окно (всплывающее окно с деталями) -->
+    <div class="modal" id="appModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <img id="modalIcon" src="" alt="App Icon">
+                <div class="modal-title-info">
+                    <h3 id="modalName">App Name</h3>
+                    <p id="modalDeveloper" class="dev">Developer</p>
+                    <div class="modal-meta">
+                        <div class="rating">
+                            <span class="material-icons">star</span>
+                            <span id="modalRating">0.0</span>
+                        </div>
+                        <div class="size">
+                            <span id="modalSize">0 MB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p id="modalDesc" class="modal-description">Yüklənir...</p>
+            <a id="modalDownloadLink" class="download-btn" href="#" download>
+                <span class="material-icons">download</span>
+                Yüklə (.apk)
+            </a>
+        </div>
+    </div>
+
+    <!-- Подключаем логику скрипта, которую вы скинули ранее -->
+    <script src="app.js"></script>
+</body>
+</html>
