@@ -1,144 +1,85 @@
-<html lang="az">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>azplaystore Milli Stora Panel</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #38bdf8;
-            --success: #22c55e;
-            --border: #334155;
+grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-color); padding: 15px; }
-        .header { margin-bottom: 20px; }
-        .header h1 { font-size: 24px; font-weight: bold; margin-bottom: 4px; }
-        .header p { color: var(--text-muted); font-size: 14px; }
-        .agent-status { margin-top: 10px; font-size: 14px; display: flex; align-items: center; gap: 6px; }
-        .badge-running { background: rgba(34, 197, 94, 0.2); color: var(--success); padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 12px; }
-        
-        /* Навигация */
-        .nav-tabs { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-        .tab-btn { background: #1e293b; border: 1px solid var(--border); color: var(--text-muted); padding: 8px 16px; border-radius: 6px; cursor: pointer; white-space: nowrap; font-size: 14px; }
-        .tab-btn.active { background: var(--primary); color: #000; font-weight: bold; border-color: var(--primary); }
-        
-        /* Секции */
-        .section { display: none; }
-        .section.active { display: block; }
-        
-        /* Карточки */
-        .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-bottom: 15px; }
-        .card h2 { font-size: 18px; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-        .stat-val { font-size: 20px; font-weight: bold; color: var(--primary); margin-top: 5px; }
-        
-        /* Кнопки */
-        .btn-action { width: 100%; background: #0284c7; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 14px; }
-        .btn-action:active { background: #0369a1; }
-        
-        .list-item { background: rgba(255,255,255,0.03); padding: 8px; border-radius: 4px; margin-bottom: 6px; font-size: 14px; border-left: 3px solid var(--primary); }
+        .stat-card {
+            background-color: #1c2541;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #3a506b;
+        }
+        .stat-card h3 {
+            font-size: 14px;
+            color: #a5a5a5;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .stat-card .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00b4d8;
+        }
+        /* Основная секция контента */
+        .content-box {
+            background-color: #1c2541;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #3a506b;
+        }
+        .content-box h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .content-box p {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .content-status {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #00b4d8;
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>azplaystore Milli Stora Panel</h1>
-        <p>Tablet POS Terminal v2.0</p>
-        <div class="agent-status">
-            AI Marketing Agent: <span class="badge-running">RUNNING 24/7</span>
+    <!-- Встроенная навигация для разработчика -->
+    <div class="dev-navbar">
+        <span class="dev-title">⚙️ Разработчик: Навигация</span>
+        <a href="./store/index.html" class="dev-btn">Смотреть сторону пользователя (Витрину) →</a>
+    </div>
+
+    <div class="panel-container">
+        <div class="header">
+            <h1>azplaystore Milli Stora Panel</h1>
+            <p>Tablet POS Terminal v2.0</p>
+            <div class="badge">AI Marketing Agent: RUNNING 24/7</div>
         </div>
-    </div>
 
-    <!-- Вкладки навигации -->
-    <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchSection('vitrin')">Ana Səhifə (Vitrin)</button>
-        <button class="tab-btn" onclick="switchSection('ai-marketing')">ИИ Продвижение 24/7</button>
-        <button class="tab-btn" onclick="switchSection('cargo')">BakuGo Karqo</button>
-        <button class="tab-btn" onclick="switchSection('usta')">BakuGo Usta</button>
-    </div>
+        <div class="tabs">
+            <div class="tab active">Ana Səhifə (Vitrin)</div>
+            <div class="tab">ИИ Продвижение 24/7</div>
+            <div class="tab">BakuGo Karqo</div>
+        </div>
 
-    <!-- 1. Секция: Витрина -->
-    <div id="vitrin" class="section active">
         <div class="stats-grid">
-            <div class="card">
-                <div>Ümumi Yükləmələr</div>
-                <div class="stat-val">1,420 DL</div>
+            <div class="stat-card">
+                <h3>Ümumi Yükləmələr</h3>
+                <div class="value">1,420 DL</div>
             </div>
-            <div class="card">
-                <div>SAYT TRAFİKİ</div>
-                <div class="stat-val">12 aktiv istifadəçi</div>
+            <div class="stat-card">
+                <h3>Sayt Trafiki</h3>
+                <div class="value">12 aktiv istifadəçi</div>
             </div>
         </div>
-        <div class="card">
+
+        <div class="content-box">
             <h2>Milli Proqram Vitrini</h2>
-            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 10px;">İA tərəfindən idarə olunan rəsmi və təhlükəsiz APK bazası.</p>
-            <div class="stat-val" style="font-size: 16px;">5 / 5 Yüklənib</div>
+            <p>İA tərəfindən idarə olunan rəsmi və təhlükəsiz APK bazası.</p>
+            <div class="content-status">5 / 5 Yüklənib</div>
         </div>
     </div>
 
-    <!-- 2. Секция: ИИ Маркетинг -->
-    <div id="ai-marketing" class="section">
-        <div class="card">
-            <h2>Автономное ИИ-Продвижение</h2>
-            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Агент генерирует трафик, привлекает клиентов и делает публикации автоматически.</p>
-            <div class="list-item">🟢 SEO Генерация текста — Активна</div>
-            <div class="list-item">🟢 TG Крауд-Постинг — Активна</div>
-            <button class="btn-action" onclick="forceAiPost()">Форсировать ИИ-Пост</button>
-        </div>
-    </div>
-
-    <!-- 3. Секция: Карго -->
-    <div id="cargo" class="section">
-        <div class="card">
-            <h2>BakuGo Karqo Modulu</h2>
-            <p style="color: var(--text-muted); font-size: 14px;">Управление интеграцией службы доставки и отслеживание посылок.</p>
-            <button class="btn-action" onclick="alert('Karqo modulu yüklənir...')">Логистическая панель</button>
-        </div>
-    </div>
-
-    <!-- 4. Секция: Мастера -->
-    <div id="usta" class="section">
-        <div class="card">
-            <h2>BakuGo Usta Modulu</h2>
-            <p style="color: var(--text-muted); font-size: 14px;">Панель распределения заказов для сервиса поиска мастеров.</p>
-            <button class="btn-action" onclick="alert('Usta modulu yüklənir...')">База мастеров</button>
-        </div>
-    </div>
-
-    <!-- Исправленный JavaScript -->
-    <script>
-        // Функция переключения вкладок (Исправленная)
-        function switchSection(sectionId) {
-            // Скрываем все секции
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            // Деактивируем все кнопки
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // Активируем нужную секцию
-            const activeSection = document.getElementById(sectionId);
-            if (activeSection) {
-                activeSection.classList.add('active');
-            }
-
-            // Подсвечиваем нажатую кнопку
-            const clickedButton = event.currentTarget;
-            if (clickedButton) {
-                clickedButton.classList.add('active');
-            }
-        }
-
-        // Функция форсирования ИИ поста
-        function forceAiPost() {
-            alert("ИИ-Пост успешно форсирован! Робот генерирует новую публикацию...");
-            // Здесь в будущем вы можете прописать ваш fetch() запрос к бэкенду
-        }
-    </script>
 </body>
 </html>
