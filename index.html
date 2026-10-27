@@ -1,4 +1,113 @@
-text-transform: uppercase;
+html
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>azplaystore Milli Stora Panel</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background-color: #0b132b;
+            color: #ffffff;
+        }
+        .dev-navbar {
+            background-color: #1c2541;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #3a506b;
+        }
+        .dev-title {
+            font-size: 14px;
+            color: #64dfdf;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dev-btn {
+            background-color: #00b4d8;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 180, 216, 0.2);
+        }
+        .dev-btn:hover {
+            background-color: #0096c7;
+        }
+        .panel-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        .header {
+            margin-bottom: 25px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        .header p {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #1e5128;
+            color: #4ecca3;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background-color: #1c2541;
+            border: 1px solid #3a506b;
+            color: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 14px;
+        }
+        .tab.active {
+            background-color: #00b4d8;
+            border-color: #00b4d8;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .stat-card {
+            background-color: #1c2541;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #3a506b;
+        }
+        .stat-card h3 {
+            font-size: 14px;
+            color: #a5a5a5;
+            margin-bottom: 8px;text-transform: uppercase;
         }
         .stat-card .value {
             font-size: 24px;
